@@ -50,11 +50,11 @@ class InferenceEngine:
                 
             if prod_versions:
                 ver_info = prod_versions[0]
-                self.model_version = ver_info.version
+                self.model_version = str(ver_info.version)
                 run_id = ver_info.run_id
                 
                 # Fetch preprocessing version from tags
-                self.prep_version = ver_info.tags.get("preprocessing_version", "unknown")
+                self.prep_version = str(ver_info.tags.get("preprocessing_version", "unknown"))
                 
                 # Load threshold from run metrics if available
                 run = client.get_run(run_id)
@@ -134,6 +134,8 @@ class InferenceEngine:
         # Load Preprocessing Artifact
         if self.prep_version == "unknown":
             self.prep_version = self.get_latest_local_prep_version()
+        else:
+            self.prep_version = str(self.prep_version)
             
         try:
             self.prep = load_artifact(self.prep_version)
