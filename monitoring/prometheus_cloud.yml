@@ -11,4 +11,4 @@ scrape_configs:
     metrics_path: "/metrics"
     scheme: "https"
     static_configs:
-      - targets: ["YOUR-RENDER-API-SUBDOMAIN.onrender.com"]
+      - targets: ["diabetes-readmission-risk.onrender.com"]
