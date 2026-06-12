@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/vizzdd/Documents/FDE/diabetes-readmission/mlruns/990683684835491106/c7dcc73b351741ef8e9b1cb347aa0097/artifacts
+end_time: 1781285579637
+entry_point_name: ''
+experiment_id: '990683684835491106'
+lifecycle_stage: active
+run_id: c7dcc73b351741ef8e9b1cb347aa0097
+run_name: random_forest
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1781285577809
+status: 3
+tags: []
+user_id: vizzdd

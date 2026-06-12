@@ -1,0 +1,10 @@
+artifact_location: file:///Users/vizzdd/Documents/FDE/diabetes-readmission/mlruns/990683684835491106/models/m-2789fc9b112947ed97d7529c4e70e6ed/artifacts
+creation_timestamp: 1781278421905
+experiment_id: '990683684835491106'
+last_updated_timestamp: 1781278423635
+model_id: m-2789fc9b112947ed97d7529c4e70e6ed
+model_type: null
+name: model
+source_run_id: 3d1263f529c64a4eaa95ec4201e3fedf
+status: 2
+status_message: null

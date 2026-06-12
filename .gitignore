@@ -3,10 +3,10 @@ __pycache__/
 *.pyc
 .metaflow/
 mlflow/
-mlruns/
+# mlruns/ (unignored to support deployment)
 data/processed/
 data/raw/
-artifacts/preprocessing_*.joblib
+# artifacts/preprocessing_*.joblib (unignored to support deployment)
 governance/audit_log.jsonl
 monitoring/evidently/*.html
 monitoring/performance/

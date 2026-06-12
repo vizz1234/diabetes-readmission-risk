@@ -1,0 +1,16 @@
+creation_timestamp: 1781278472045
+current_stage: Production
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1781278521402
+model_id: m-d18c7c721aa74a698792b6ad6e102c55
+name: diabetes_readmission_model
+run_id: 640dd0f786734715ad431dc5d292d52f
+run_link: null
+source: models:/m-d18c7c721aa74a698792b6ad6e102c55
+status: READY
+status_message: null
+storage_location: file:///Users/vizzdd/Documents/FDE/diabetes-readmission/mlruns/990683684835491106/models/m-d18c7c721aa74a698792b6ad6e102c55/artifacts
+user_id: null
+version: 1
+workspace: default

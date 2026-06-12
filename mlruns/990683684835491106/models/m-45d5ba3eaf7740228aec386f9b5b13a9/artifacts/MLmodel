@@ -1,0 +1,23 @@
+artifact_path: file:///Users/vizzdd/Documents/FDE/diabetes-readmission/mlruns/990683684835491106/models/m-45d5ba3eaf7740228aec386f9b5b13a9/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.4
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.9.0
+    skops_trusted_types: null
+mlflow_version: 3.13.0
+model_id: m-45d5ba3eaf7740228aec386f9b5b13a9
+model_size_bytes: 3267795
+model_uuid: m-45d5ba3eaf7740228aec386f9b5b13a9
+prompts: null
+run_id: dbd3f04dcebe436885af6367834f8771
+utc_time_created: '2026-06-12 15:34:23.742049'

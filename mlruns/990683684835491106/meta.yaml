@@ -1,0 +1,9 @@
+artifact_location: file:///Users/vizzdd/Documents/FDE/diabetes-readmission/mlruns/990683684835491106
+creation_time: 1781278310676
+effective_trace_archival_retention: null
+experiment_id: '990683684835491106'
+last_update_time: 1781278310676
+lifecycle_stage: active
+name: diabetes_readmission_experiment
+trace_location: null
+workspace: default
