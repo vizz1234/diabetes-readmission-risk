@@ -1,0 +1,2 @@
+FROM prom/prometheus:latest
+COPY monitoring/prometheus_cloud.yml /etc/prometheus/prometheus.yml
