@@ -62,8 +62,38 @@ class InferenceEngine:
                 
                 # Load model
                 model_uri = f"runs:/{run_id}/model"
-                self.model = mlflow.sklearn.load_model(model_uri)
-                print(f"Loaded champion model version {self.model_version} from run {run_id}")
+                try:
+                    self.model = mlflow.sklearn.load_model(model_uri)
+                    print(f"Loaded champion model version {self.model_version} from run {run_id}")
+                except Exception as load_err:
+                    print(f"Direct MLflow load failed: {load_err}. Attempting relative path correction...")
+                    # Parse version's meta.yaml directly
+                    meta_path = f"mlruns/models/{model_name}/version-{self.model_version}/meta.yaml"
+                    if os.path.exists(meta_path):
+                        import yaml
+                        with open(meta_path, "r") as f:
+                            meta_data = yaml.safe_load(f)
+                        model_id = meta_data.get("model_id")
+                        storage_loc = meta_data.get("storage_location", "")
+                        
+                        # Fallback 1: if storage_location contains a path, construct relative path
+                        if "mlruns/" in storage_loc:
+                            relative_path = storage_loc[storage_loc.find("mlruns/"):]
+                            print(f"Extracted relative path from storage_location: {relative_path}")
+                            if os.path.exists(relative_path):
+                                self.model = mlflow.sklearn.load_model(relative_path)
+                                print(f"Successfully loaded model from storage_location path!")
+                                return
+                                
+                        # Fallback 2: glob search for model_id folder
+                        if model_id:
+                            matched_paths = glob.glob(f"mlruns/*/models/{model_id}/artifacts")
+                            if matched_paths and os.path.exists(matched_paths[0]):
+                                print(f"Found corrected local path via glob: {matched_paths[0]}")
+                                self.model = mlflow.sklearn.load_model(matched_paths[0])
+                                print(f"Successfully loaded model from glob path!")
+                                return
+                    raise load_err
             else:
                 print("No registered model found in MLflow. Searching local directory...")
                 raise ValueError("No MLflow registered model available.")
