@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.metaflow/
+mlflow/
+mlruns/
+data/processed/
+data/raw/
+artifacts/preprocessing_*.joblib
+governance/audit_log.jsonl
+monitoring/evidently/*.html
+monitoring/performance/
+.env
+.DS_Store
+.pytest_cache/
