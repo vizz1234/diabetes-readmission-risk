@@ -69,6 +69,7 @@ class InferenceEngine:
                     print(f"Direct MLflow load failed: {load_err}. Attempting relative path correction...")
                     # Parse version's meta.yaml directly
                     meta_path = f"mlruns/models/{model_name}/version-{self.model_version}/meta.yaml"
+                    loaded = False
                     if os.path.exists(meta_path):
                         import yaml
                         with open(meta_path, "r") as f:
@@ -83,17 +84,19 @@ class InferenceEngine:
                             if os.path.exists(relative_path):
                                 self.model = mlflow.sklearn.load_model(relative_path)
                                 print(f"Successfully loaded model from storage_location path!")
-                                return
+                                loaded = True
                                 
                         # Fallback 2: glob search for model_id folder
-                        if model_id:
+                        if not loaded and model_id:
                             matched_paths = glob.glob(f"mlruns/*/models/{model_id}/artifacts")
                             if matched_paths and os.path.exists(matched_paths[0]):
                                 print(f"Found corrected local path via glob: {matched_paths[0]}")
                                 self.model = mlflow.sklearn.load_model(matched_paths[0])
                                 print(f"Successfully loaded model from glob path!")
-                                return
-                    raise load_err
+                                loaded = True
+                                
+                    if not loaded:
+                        raise load_err
             else:
                 print("No registered model found in MLflow. Searching local directory...")
                 raise ValueError("No MLflow registered model available.")
