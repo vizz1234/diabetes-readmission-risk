@@ -140,3 +140,22 @@ Verify all preprocessing transforms, ICD-9 mappings, and mock API endpoints:
 ```bash
 PYTHONPATH=src:src/pipeline:src/pipeline/models pytest tests/
 ```
+
+---
+
+## System Demonstrations
+
+Below are recordings of the system components and dashboards in action.
+
+### 1. FastAPI Predict & Predict Batch Endpoints
+This recording demonstrates using the OpenAPI Swagger UI to make real-time single and batch prediction requests:
+![FastAPI Predict & Predict Batch Demo](/Users/vizzdd/.gemini/antigravity-ide/brain/39b3dfaf-4155-432d-97d6-142137680ad3/predict_features.webp)
+
+### 2. Grafana Performance Monitoring Dashboard
+This recording shows the Prometheus-scraped metrics, including HTTP Request Rate, Latency, Error Rate, and Predicted Risk Score Distribution:
+![Grafana Performance Monitoring Dashboard Demo](/Users/vizzdd/.gemini/antigravity-ide/brain/39b3dfaf-4155-432d-97d6-142137680ad3/grafana_dashboard.webp)
+
+### 3. Evidently Data Drift Analysis Report
+This recording shows the interactive Evidently HTML report comparing the current drifted patient cohort against the reference training dataset:
+![Evidently Data Drift Report Demo](/Users/vizzdd/.gemini/antigravity-ide/brain/39b3dfaf-4155-432d-97d6-142137680ad3/evidently_report.webp)
+
