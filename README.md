@@ -1,5 +1,8 @@
 # Diabetes 30-Day Readmission Risk System
 
+### 🚀 Live Cloud API: [https://diabetes-readmission-risk.onrender.com](https://diabetes-readmission-risk.onrender.com)
+* (Use `/docs` for the interactive Swagger UI or `/health` for the service status check).
+
 This repository implements a production-grade machine learning system to predict 30-day readmission risk for diabetic patients at discharge. The system features a Metaflow training pipeline, local MLflow registry tracking, a FastAPI inference service, containerized Prometheus/Grafana monitoring, data drift checks using Evidently, and automated retraining.
 
 ## Project Structure
@@ -61,6 +64,16 @@ This repository implements a production-grade machine learning system to predict
 │
 └── tests/                             # Pytest unit & integration test files
 ```
+
+---
+
+## Model Governance & System Validation
+
+This project enforces strict clinical model validation and audit practices:
+
+* **[Model Card (Intended Use, Evaluation & Limitations)](./governance/model_card.md)**: Documents the model's target application, training data characteristics, out-of-sample performance metrics (PR-AUC, Brier score), and operational guardrails.
+* **[Fairness Disparity Audit](./governance/fairness_report.md)**: Details the automated demographic parity and equal opportunity checks across sensitive attributes (Age, Gender, and Race) to ensure unbiased prediction behaviors.
+* **[Reflection and Cost-Benefit Analysis](./governance/reflection.md)**: Analyzes the business case, clinical trade-offs of the savings-optimized decision threshold, and engineering post-mortem reflections.
 
 ---
 
