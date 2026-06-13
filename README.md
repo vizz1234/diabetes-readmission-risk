@@ -77,6 +77,19 @@ This project enforces strict clinical model validation and audit practices:
 
 ---
 
+## Model Monitoring, Drift Detection & Retraining
+
+To prevent model degradation over time, the system includes a continuous monitoring and automated retraining framework located in the `./monitoring` directory:
+
+* **Data Drift Detection ([`monitoring/drift_check.py`](./monitoring/drift_check.py))**: Uses **Evidently AI**'s `DataDriftPreset` to compare incoming patient cohorts against the baseline training distribution. It computes a feature drift share and generates an interactive HTML report saved under `./monitoring/evidently/`.
+* **Automated Retraining Watcher ([`monitoring/retrain_flow.py`](./monitoring/retrain_flow.py))**: A **Metaflow orchestration flow** that acts as the system's watch loop:
+  1. Checks for feature drift on the latest batch.
+  2. Runs recent performance audits ([`monitoring/performance_check.py`](./monitoring/performance_check.py)) to verify that the out-of-sample recall stays above a minimum floor of **60%**.
+  3. Triggers system alerts via [`monitoring/alerts.py`](./monitoring/alerts.py) if either a drift threshold ($>0.30$) or a performance drop ($<60\%$ recall) is detected.
+  4. Automatically kicks off the retraining DAG ([`src/pipeline/readmission_flow.py`](./src/pipeline/readmission_flow.py)) and executes a champion-challenger promotion step.
+
+---
+
 ## Getting Started
 
 ### 1. Environment & Dependencies Setup
